@@ -1,0 +1,50 @@
+﻿<Application x:Class="TaskMapApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TaskMapApp"
+             xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map">
+    <Application.Resources>
+      
+                <local:RadiusConverter x:Key="radiusConverter"/>
+
+                <DataTemplate x:Key="placeTemplate">
+                    <Grid Background="Transparent">
+                
+                    <Ellipse Fill="{Binding MapPointColor}" Opacity=".5" x:Name="ellipse" >
+                            <Ellipse.Width>
+                                <MultiBinding Converter="{StaticResource radiusConverter}">
+                                    <Binding Path="Radius" />
+                                    <Binding Path="Count" />
+                                    <Binding Path="Zoom" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                                </MultiBinding>
+                            </Ellipse.Width>
+                            <Ellipse.Height>
+                                <MultiBinding Converter="{StaticResource radiusConverter}">
+                                    <Binding Path="Radius"/>
+                                    <Binding Path="Count"/>
+                                    <Binding Path="Zoom" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                                </MultiBinding>
+                            </Ellipse.Height>
+                        </Ellipse>
+                    </Grid>
+          
+                    <DataTemplate.Triggers>             
+                    
+                        <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
+                            <Setter TargetName="ellipse" Property="Stroke" Value="Black" />
+                            <Setter TargetName="ellipse" Property="StrokeDashArray" Value="2 2" />
+                            <Setter TargetName="ellipse" Property="StrokeThickness" Value="4" />
+                        </DataTrigger>           
+                    </DataTemplate.Triggers>
+        </DataTemplate>
+
+                <DataTemplate x:Key="toolTipTemplate">
+                    <StackPanel Margin="12" Orientation="Vertical" MaxWidth="250">
+                        <TextBlock Text="{Binding Item.Name}" Foreground="White" FontSize="16"/>
+                        <TextBlock Text="{Binding Item.Description}" Foreground="LightGray" FontSize="12" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </DataTemplate>
+       
+       
+    </Application.Resources>
+</Application>
