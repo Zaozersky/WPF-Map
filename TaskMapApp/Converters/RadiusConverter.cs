@@ -57,7 +57,9 @@ namespace TaskMapApp
                 int radius = (int)values[0];
                 int count = (int)values[1];
                 int zoom = (int)values[2];
-                return (double)(2*radius*count/mapResolution[zoom]); // width = height = 2*R
+
+                if (mapResolution.ContainsKey(zoom))
+                    return (double)(2*radius*count/mapResolution[zoom]); // width = height = 2*R
             }
 
             return null;

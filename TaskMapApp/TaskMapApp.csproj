@@ -35,19 +35,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\DevExpress.Data.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Map.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\DevExpress.Map.v13.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\DevExpress.Xpf.Core.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="devexpress.xpf.map.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\devexpress.xpf.map.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Mvvm.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\DevExpress.Xpf.Mvvm.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -79,6 +84,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommonConstants.cs" />
     <Compile Include="Converters\CoordConverter.cs" />
     <Compile Include="Converters\RadiusConverter.cs" />
     <Compile Include="Model\MapPoint.cs" />
@@ -121,10 +127,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Library\DevExpress.Data.v13.2.dll" />
+    <Content Include="Library\DevExpress.Map.v13.2.Core.dll" />
+    <Content Include="Library\DevExpress.Xpf.Core.v13.2.dll" />
+    <Content Include="Library\devexpress.xpf.map.v13.2.dll" />
+    <Content Include="Library\DevExpress.Xpf.Mvvm.v13.2.dll" />
     <Content Include="Resources\map.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

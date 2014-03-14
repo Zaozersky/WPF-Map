@@ -21,7 +21,7 @@ namespace TaskMapApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainViewModel _mapViewModel;
+        private MainViewModel _mapViewModel;
 
         public MainWindow()
         {

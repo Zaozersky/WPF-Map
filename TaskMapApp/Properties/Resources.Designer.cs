@@ -61,6 +61,15 @@ namespace TaskMapApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arj3FFIpFAcjhkPlE_8cUkNQkdpldhBtdmbFW_-oqmwnUVhAhqwUuTUIW-7o2efR.
+        /// </summary>
+        internal static string bingKey {
+            get {
+                return ResourceManager.GetString("bingKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap map {

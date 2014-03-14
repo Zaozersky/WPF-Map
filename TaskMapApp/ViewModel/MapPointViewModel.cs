@@ -15,11 +15,10 @@ namespace TaskMapApp
     public class MapPointViewModel : INotifyPropertyChanged
     {
         private MapPoint _mapPoint;
-        SolidColorBrush _mapPointColor;
+        private SolidColorBrush _mapPointColor;
         private int _count;
         private int? _zoom;
-        private bool _isSelected;
-        private const int _radius = 100; // в метрах
+        private bool _isSelected;       
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -76,7 +75,7 @@ namespace TaskMapApp
         /// </summary>
         public int Radius
         {
-            get { return _radius; }            
+            get { return CommonConstants.Radius; }            
         }
 
         /// <summary>

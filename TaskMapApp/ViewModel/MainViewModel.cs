@@ -34,7 +34,7 @@ namespace TaskMapApp
         private MapPointViewModel _selectedPlace;
         private MapCustomElement _selectedMapElement;
 
-        private int _zoom = 3; // начальный zoom
+        private int _zoom = CommonConstants.InitZoom;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -111,7 +111,7 @@ namespace TaskMapApp
 
         public string Key
         {
-            get { return "Arj3FFIpFAcjhkPlE_8cUkNQkdpldhBtdmbFW_-oqmwnUVhAhqwUuTUIW-7o2efR"; }
+            get { return Resources.bingKey; }
         }
 
         public void OnPropertyChanged(string name)
@@ -178,9 +178,10 @@ namespace TaskMapApp
         private void UpdateSelectedMapElement()
         {
             SelectedMapElement = _mapNameToMapElement[SelectedPlace.Name];
+            
+            // сфокусировать на выбранном месте    
             SetFocusOnSelectedElement(SelectedMapElement);
-
-            Zoom = 15; // сфокусировать на выбранном месте          
+            Zoom = CommonConstants.FocusZoom;       
         }
 
         private void SetFocusOnSelectedElement(MapCustomElement element)
@@ -193,36 +194,36 @@ namespace TaskMapApp
         }
 
         private void LoadData()
-        {
+        {          
             using (var textReader = new StreamReader("Resources/in.csv"))
             {
-                string[] sep = { "\r\n", ";" };
+                string[] sep = { ";", "\r\n" };
                 textReader.ReadLine();
 
-                string[] data = textReader.ReadToEnd().Split(sep, StringSplitOptions.None);
+                string[] tokens = textReader.ReadToEnd().Split(sep, StringSplitOptions.None);
 
                 double lat, lng;
                 int k = 0;
 
                 CultureInfo culture = CultureInfo.InvariantCulture;                
 
-                // парсим данные, формат : МЕСТО;ШИРОТА;ДОЛГОТА;ОПИСАНИЕ
-                while (k <= data.Length - 4)
+                // Парсим данные, формат : МЕСТО;ШИРОТА;ДОЛГОТА;ОПИСАНИЕ
+                while (k <= tokens.Length - 4)
                 {
-                    lat = Double.Parse(data[k + 1], culture);
-                    lng = Double.Parse(data[k + 2], culture);
+                    lat = Double.Parse(tokens[k + 1], culture);
+                    lng = Double.Parse(tokens[k + 2], culture);
 
                     GeoPoint geoPoint = new GeoPoint(lat, lng);
-                    MapPoint point = new MapPoint(data[k], geoPoint, data[k + 3]);   
+                    MapPoint point = new MapPoint(tokens[k], geoPoint, tokens[k + 3]);   
 
-                    if (!_mapNameToCount.ContainsKey(data[k]))
+                    if (!_mapNameToCount.ContainsKey(tokens[k]))
                     {
-                        _mapNameToCount.Add(data[k], 1);
+                        _mapNameToCount.Add(tokens[k], 1);
                         _mapPointsInfo.Add(point);
                     }
-                    else _mapNameToCount[data[k]]++;
+                    else _mapNameToCount[tokens[k]]++;
 
-                    if ((k + 4) < data.Length && string.IsNullOrEmpty(data[k + 4]))
+                    if ((k + 4) < tokens.Length && string.IsNullOrEmpty(tokens[k + 4]))
                         k++;
 
                     k += 4;
